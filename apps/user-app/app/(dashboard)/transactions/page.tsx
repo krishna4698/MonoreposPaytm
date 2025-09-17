@@ -2,7 +2,17 @@ import { getServerSession } from "next-auth";
 import { authOptions } from "../../lib/auth";
 import prisma from "@repo/db/client";
 
-async function gettransfer() {
+type P2PTransferWithUsers = {
+  id: number;
+  amount: number;
+  fromUserId: number;
+  toUserId: number;
+  timestamp: Date;
+  fromUser: { number: string };
+  toUser: { number: string };
+};
+
+async function gettransfer(): Promise<{ txs: P2PTransferWithUsers[]; userId: number }> {
   const session = await getServerSession(authOptions);
   if (!session?.user?.id) return { txs: [], userId: 0 };
 
