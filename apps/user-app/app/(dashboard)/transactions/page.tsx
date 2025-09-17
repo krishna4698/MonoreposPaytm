@@ -4,7 +4,7 @@ import prisma from "@repo/db/client";
 
 async function gettransfer() {
   const session = await getServerSession(authOptions);
-  if (!session?.user?.id) return [];
+  if (!session?.user?.id) return { txs: [], userId: 0 };
 
   const userId = Number(session.user.id); //current user which is logged in
   
