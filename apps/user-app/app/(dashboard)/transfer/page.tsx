@@ -5,6 +5,7 @@ import { OnRampTransactions } from "../../../components/OnRampTransactions";
 import { getServerSession } from "next-auth";
 import { authOptions } from "../../lib/auth";
 
+
 async function getBalance() {
     const session = await getServerSession(authOptions);
     const balance = await prisma.balance.findFirst({
@@ -18,7 +19,14 @@ async function getBalance() {
     }
 }
 
-async function getOnRampTransactions() {
+type OnRampTxnUI = {
+  time: Date;
+  amount: number;
+  status: string;
+  provider: string;
+};
+
+async function getOnRampTransactions(): Promise<OnRampTxnUI[]> {
     const session = await getServerSession(authOptions);
     const txns = await prisma.onRampTransaction.findMany({
         where: {
