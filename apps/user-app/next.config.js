@@ -2,6 +2,6 @@
 module.exports = {
   transpilePackages: ["@repo/ui"],
   typescript:{ignoreBuildErrors:true
-    
+
   }
-};
+}; 
