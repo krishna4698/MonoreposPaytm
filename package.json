@@ -1,6 +1,6 @@
 {
   "name": "week-18",
-  "private": true,
+  "private": true,  
   "scripts": {
     "build": "turbo build",
     "dev": "turbo dev",
